@@ -1,9 +1,9 @@
-import { CloudCostAnalyzer, ResourceCostItem } from "../src/analyzer/cost_analyzer";
+const { CloudCostAnalyzer } = require("../dist/analyzer/cost_analyzer");
 
 describe("CloudCostAnalyzer Suite", () => {
   it("should calculate total spend and potential savings correctly", () => {
     const analyzer = new CloudCostAnalyzer();
-    const items: ResourceCostItem[] = [
+    const items = [
       { resourceId: "i-aws-01", service: "EC2", provider: "AWS", monthlyCostUSD: 1000 },
       { resourceId: "i-aws-02", service: "RDS", provider: "AWS", monthlyCostUSD: 500 }
     ];
