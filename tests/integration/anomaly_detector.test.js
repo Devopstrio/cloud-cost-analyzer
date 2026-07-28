@@ -1,6 +1,6 @@
 const { test, describe } = require("node:test");
 const assert = require("node:assert/strict");
-const { CostAnomalyDetector } = require("../dist/detector/anomaly_detector");
+const { CostAnomalyDetector } = require("../../dist/detector/anomaly_detector");
 
 describe("CostAnomalyDetector Suite", () => {
   test("should flag cost spike above threshold as anomaly", () => {

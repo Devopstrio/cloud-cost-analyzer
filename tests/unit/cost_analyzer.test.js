@@ -1,6 +1,6 @@
 const { test, describe } = require("node:test");
 const assert = require("node:assert/strict");
-const { CloudCostAnalyzer } = require("../dist/analyzer/cost_analyzer");
+const { CloudCostAnalyzer } = require("../../dist/analyzer/cost_analyzer");
 
 describe("CloudCostAnalyzer Suite", () => {
   test("should calculate total spend and potential savings correctly", () => {
