@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Node.js
+    - name: Set up Node.js 20
       uses: actions/setup-node@v4
       with:
         node-version: '20'
@@ -20,8 +20,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build TypeScript
+    - name: Build TypeScript SDK
       run: npm run build
 
-    - name: Run Test Suite
+    - name: Run JS Unit Test Suite
       run: npm test
