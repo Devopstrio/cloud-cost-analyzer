@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: finops-analyzer
+  labels:
+    name: finops-analyzer
+    app.kubernetes.io/managed-by: devopstrio
