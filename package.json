@@ -8,6 +8,10 @@
     "build": "tsc",
     "test": "jest --passWithNoTests"
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
   "author": "Devopstrio <engineering@devopstrio.co.uk>",
   "dependencies": {
     "dotenv": "^16.4.5"
