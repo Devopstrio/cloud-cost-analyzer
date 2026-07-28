@@ -1,0 +1,5 @@
+flowchart TD
+    GitPush["Git Commit Push"] --> CI["GitHub Actions CI Pipeline"]
+    CI --> Build["TypeScript Compile (tsc)"]
+    Build --> Test["Node.js 20 Native Test Runner"]
+    Test --> Deploy["Kubernetes / OpenTofu Deployment"]

@@ -1,0 +1,5 @@
+graph TD
+    Ingress["Cloud Billing Ingestion Engine"] --> Router["API Gateway / Router"]
+    Router --> Analyzer["Cloud Cost Analyzer Engine"]
+    Analyzer --> Detector["Cost Anomaly Detector"]
+    Detector --> Reporter["Executive Summary Reporter"]

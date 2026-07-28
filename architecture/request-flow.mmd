@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant Client as FinOps Operator / API
+    participant Analyzer as Cloud Cost Analyzer
+    participant Detector as Anomaly Detector
+    participant Reporter as Cost Reporter
+
+    Client->>Analyzer: Submit ResourceCostItem[] Payload
+    Analyzer->>Detector: Evaluate Baseline Cost Deviation
+    Detector-->>Analyzer: Return AnomalyReport
+    Analyzer->>Reporter: Generate Executive Summary
+    Reporter-->>Client: Markdown / JSON Summary Report
