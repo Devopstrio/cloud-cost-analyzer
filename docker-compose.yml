@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  cloud-cost-analyzer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - ./src:/app/src
