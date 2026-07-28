@@ -1,0 +1,4 @@
+# Codeowners for Cloud Cost Analyzer
+*       @Devopstrio/finops-engineers
+/src/   @Devopstrio/typescript-architects
+/terraform/ @Devopstrio/platform-team
