@@ -1,0 +1,13 @@
+# Node dependencies & dist
+node_modules/
+dist/
+*.log
+
+# Jest coverage & test outputs
+coverage/
+.jest/
+
+# OS & IDE files
+.DS_Store
+.idea/
+.vscode/
