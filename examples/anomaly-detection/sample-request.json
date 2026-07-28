@@ -1,0 +1,4 @@
+{
+  "resourceItem": { "resourceId": "vol-99", "service": "EBS", "provider": "AWS", "monthlyCostUSD": 200 },
+  "historicalAverageUSD": 100
+}

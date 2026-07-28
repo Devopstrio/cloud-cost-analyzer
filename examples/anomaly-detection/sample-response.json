@@ -1,0 +1,7 @@
+{
+  "resourceId": "vol-99",
+  "expectedCostUSD": 100,
+  "actualCostUSD": 200,
+  "spikePercentage": 100,
+  "isAnomaly": true
+}

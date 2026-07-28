@@ -1,0 +1,6 @@
+{
+  "provider": "AWS",
+  "totalSpendUSD": 1500,
+  "topCostService": "EC2",
+  "potentialSavingsUSD": 270
+}

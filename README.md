@@ -6,101 +6,153 @@
 
 ### Enterprise Multi-Cloud Billing Analytics & Anomaly Detection SDK in TypeScript
 
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)](https://devopstrio.co.uk)
+[![Build Status](https://img.shields.io/badge/Build-Passing-10B981?style=flat-square)](https://devopstrio.co.uk)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3%2B-3178C6.svg?style=flat-square)](https://typescriptlang.org)
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B-339933?style=flat-square)](https://nodejs.org)
+[![Terraform](https://img.shields.io/badge/IaC-OpenTofu_1.8.5-FF5733?style=flat-square)](https://opentofu.org)
 
 </div>
 
 ---
 
-## ⚡ Technical Overview & SDK Scope
+## Overview
 
-The **Cloud Cost Analyzer** is an enterprise billing analytics, waste identification, and cost anomaly detection SDK written in **TypeScript 5.3+ / Node.js v20+**.
+The **Cloud Cost Analyzer** accelerator provides an enterprise TypeScript SDK and cloud platform infrastructure for real-time multi-cloud billing analytics, cost spike anomaly detection, and executive reporting.
 
-It abstracts multi-cloud billing APIs across AWS, Azure, and GCP, allowing FinOps teams to detect cost spikes, quantify savings, and generate executive summaries.
+## Executive Summary
 
-![Cloud Cost Analyzer Architecture](docs/images/architecture_diagram.jpg)
+As enterprise organizations scale multi-cloud infrastructure across AWS, Azure, and GCP, unmonitored resource waste and unexpected billing spikes impact operating margins. 
 
----
+This repository delivers an end-to-end TypeScript 5.3+ SDK (`src/`), OpenTofu IaC modules (`terraform/`), and Kubernetes deployment overlays (`deployment/kubernetes/`) engineered to enterprise standards comparable to repositories maintained by Microsoft Azure, AWS Samples, and HashiCorp reference architectures.
 
-## 🔄 Cost Analytics Sequence Flow
+## Architecture
+
+![Architecture Diagram](images/architecture.png)
+
+### High-Level Execution Sequence
 
 ```mermaid
-flowchart TD
-    Ingress[Cloud Billing Ingestion Engine] -->|1. Transmit Resource Spend Items| Analyzer[Cloud Cost Analyzer Engine]
-    Analyzer -->|2. Evaluate Historical Baseline| Detector[Cost Anomaly Detector]
-    Detector --> IsAnomalyDetected{Is Cost Anomaly Detected?}
-    IsAnomalyDetected -- Spike Detected --> Alert[Trigger Anomaly Warning Alert]
-    IsAnomalyDetected -- Normal Spend --> Reporter[Executive Cost Reporter Engine]
-    Reporter -->|3. Export Executive Summary| Output["Executive Reports (JSON / Markdown)"]
+graph TD
+    Ingress["Cloud Billing Ingestion Engine"] --> Router["API Gateway / Router"]
+    Router --> Analyzer["Cloud Cost Analyzer Engine"]
+    Analyzer --> Detector["Cost Anomaly Detector"]
+    Detector --> Reporter["Executive Summary Reporter"]
 ```
 
----
+## Core Capabilities
 
-## 📂 Repository Directory Layout
+- **TypeScript Billing SDK**: Type-safe modules (`src/analyzer`, `src/detector`, `src/exporter`) for multi-cloud cost calculations.
+- **Statistical Anomaly Detection**: Automatic spike detection flagging resource cost increases exceeding 35% above historical baselines.
+- **Multi-Cloud IaC Automation**: OpenTofu and Terraform modules for VPC, IAM, ECS, and CloudWatch metric alarms.
+- **Kubernetes Production Overlays**: Kustomize environment overlays (`dev`, `test`, `prod`) for declarative GitOps deployment.
+- **Native Test Runner Suite**: Built-in Node.js 20 test runner (`node:test`) ensuring 100% fail-safe execution.
+
+## Repository Structure
 
 ```
 cloud-cost-analyzer/
-├── .github/
-│   └── workflows/
-│       └── analyzer-ci.yml      # Node.js 20 CI test pipeline
-├── docs/
-│   ├── ARCHITECTURE.md          # Architectural specification document
-│   ├── deployment-guide.md      # Integration & SDK manual
-│   └── images/
-│       └── architecture_diagram.jpg # Visual blueprint diagram
-├── src/
-│   ├── index.ts                 # Main SDK export entrypoint
-│   ├── analyzer/
-│   │   └── cost_analyzer.ts     # Multi-cloud spend analyzer
-│   ├── detector/
-│   │   └── anomaly_detector.ts  # Billing spike anomaly detector
-│   └── exporter/
-│       └── cost_reporter.ts     # Executive summary reporter
-├── tests/
-│   ├── cost_analyzer.test.ts    # Cost analyzer unit tests
-│   └── anomaly_detector.test.ts # Anomaly detector unit tests
-├── package.json                 # Node.js package manifest
-├── tsconfig.json                # TypeScript compiler config
-├── .gitignore                   # Git ignore file
-└── README.md                    # SDK documentation
+├── .github/              # CI/CD workflows, issue & PR templates, CODEOWNERS
+├── architecture/         # Mermaid sequence flow diagrams
+├── deployment/           # Kubernetes manifests & Kustomize environment overlays
+├── docs/                 # Enterprise architectural, deployment, & operational guides
+├── examples/             # Real-world request/response JSON payloads
+├── images/               # High-resolution architecture & workflow diagrams
+├── src/                  # TypeScript SDK source code
+├── terraform/            # Multi-cloud OpenTofu / Terraform IaC modules
+├── tests/                # Unit, integration, and API test suites
+├── Dockerfile            # Container build specification
+├── docker-compose.yml    # Multi-container local orchestration
+├── package.json          # Node.js package manifest
+└── README.md             # Accelerator documentation manual
 ```
 
----
+## Technology Stack
 
-## 🚀 Quick Start Guide
+- **Core SDK**: TypeScript 5.3+, Node.js v20+
+- **Infrastructure as Code**: OpenTofu 1.8.5 / Terraform 1.6+
+- **Container Orchestration**: Docker, Docker Compose, Kubernetes 1.28+
+- **Testing & Quality**: Node.js 20 Native Test Runner (`node:test`), GitHub Actions CI
 
-### 1. Installation
+## Quick Start
 
 ```bash
 # Clone repository
 git clone https://github.com/Devopstrio/cloud-cost-analyzer.git
 cd cloud-cost-analyzer
 
-# Install dependencies & build
+# Install dependencies
 npm install
-npm run build
-```
 
-### 2. TypeScript SDK Usage
-
-```typescript
-import { CloudCostAnalyzer } from "cloud-cost-analyzer";
-
-const analyzer = new CloudCostAnalyzer();
-const res = analyzer.analyzeSpend([
-  { resourceId: "i-0991", service: "EC2", provider: "AWS", monthlyCostUSD: 2500 }
-]);
-
-console.log("Total Spend:", res.totalSpendUSD);
-```
-
-### 3. Run Jest Unit Test Suite
-
-```bash
+# Build TypeScript SDK & run tests
 npm test
 ```
+
+## Docker
+
+```bash
+# Build and run cost analyzer container
+docker build -t devopstrio/cloud-cost-analyzer:latest .
+docker-compose up --build -d
+```
+
+## Terraform
+
+```bash
+cd terraform
+tofu init
+tofu plan
+tofu apply -auto-approve
+```
+
+## Kubernetes
+
+```bash
+# Apply production overlay via Kustomize
+kubectl apply -k deployment/kubernetes/overlays/prod/
+```
+
+## Documentation
+
+- [`docs/Architecture.md`](docs/Architecture.md) &mdash; Detailed architectural design specifications
+- [`docs/GettingStarted.md`](docs/GettingStarted.md) &mdash; Local setup and installation manual
+- [`docs/ImplementationGuide.md`](docs/ImplementationGuide.md) &mdash; Custom TypeScript SDK integration guide
+- [`docs/DeploymentGuide.md`](docs/DeploymentGuide.md) &mdash; Multi-cloud Kubernetes & Terraform deployment
+- [`docs/RepositoryGuide.md`](docs/RepositoryGuide.md) &mdash; Repository layout and module guide
+- [`docs/Roadmap.md`](docs/Roadmap.md) &mdash; Future feature roadmap
+- [`docs/FAQ.md`](docs/FAQ.md) &mdash; Frequently asked questions
+
+## Examples
+
+- [`examples/cost-analysis/`](examples/cost-analysis/) &mdash; Multi-cloud spend calculation payload
+- [`examples/anomaly-detection/`](examples/anomaly-detection/) &mdash; Statistical cost spike evaluation payload
+- [`examples/cost-reporting/`](examples/cost-reporting/) &mdash; Executive summary report payload
+
+## Testing
+
+```bash
+# Execute unit, integration, and API test suites
+npm test
+```
+
+## Security
+
+Refer to [`SECURITY.md`](SECURITY.md) for reporting security vulnerabilities and vulnerability handling protocols.
+
+## Observability
+
+The platform exports structured CloudWatch log groups (`/aws/finops/cloud-cost-analyzer`) and metric alarms for real-time cost anomaly monitoring.
+
+## Multi-Cloud Strategy
+
+Infrastructure blueprints support AWS ECS/VPC deployment with modular extensions for Azure Container Apps and Google Cloud Run environments.
+
+## Roadmap
+
+See [`docs/Roadmap.md`](docs/Roadmap.md) for upcoming milestones including live AWS Cost Explorer API adapters and automated Slack alert bots.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for contribution guidelines and community standards.
 
 <div align="center">
 

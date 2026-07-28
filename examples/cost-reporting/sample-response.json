@@ -1,0 +1,3 @@
+{
+  "report": "=== DEVOPSTRIO CLOUD COST ANALYSIS REPORT ===\nProvider: AWS\nTotal Spend: $1500\nTop Cost Service: EC2\nPotential Savings: $270\n[ALERT] Cost Anomaly Detected on vol-99 (+100% spike)"
+}

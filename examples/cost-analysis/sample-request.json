@@ -1,0 +1,4 @@
+[
+  { "resourceId": "i-aws-01", "service": "EC2", "provider": "AWS", "monthlyCostUSD": 1000 },
+  { "resourceId": "i-aws-02", "service": "RDS", "provider": "AWS", "monthlyCostUSD": 500 }
+]
